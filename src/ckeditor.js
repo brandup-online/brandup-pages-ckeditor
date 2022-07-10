@@ -27,10 +27,10 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 //import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 
-export default class BalloonEditor extends BalloonEditorBase { }
+export default class ContentEditor extends BalloonEditorBase { }
 
 // Plugins to include in the build.
-BalloonEditor.builtinPlugins = [
+ContentEditor.builtinPlugins = [
 	Essentials,
 	//UploadAdapter,
 	Autoformat,
@@ -57,7 +57,7 @@ BalloonEditor.builtinPlugins = [
 ];
 
 // Editor configuration.
-BalloonEditor.defaultConfig = {
+ContentEditor.defaultConfig = {
 	blockToolbar: [
 		'heading',
 		'|',
@@ -101,15 +101,12 @@ BalloonEditor.defaultConfig = {
 			'imageTextAlternative'
 		]
 	},
-	//table: {
-	//	contentToolbar: [
-	//		'tableColumn',
-	//		'tableRow',
-	//		'mergeTableCells'
-	//	]
-	//},
-	// This value must be kept in sync with the language defined in webpack.config.js.
+	table: {
+		contentToolbar: [
+			'tableColumn',
+			'tableRow',
+			'mergeTableCells'
+		]
+	},
 	language: 'ru'
 };
-
-BalloonEditor.create().then(v => {  })
