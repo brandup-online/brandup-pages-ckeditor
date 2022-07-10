@@ -1,4 +1,4 @@
-export interface IEditorConfig {
+export interface EditorConfig {
     language?: string;
     placeholder?: string;
     toolbar?: Array<string>;
@@ -78,5 +78,9 @@ export declare class Element {
 export declare class RootElement extends Element {
 }
 export declare type PriorityString = 'highest' | 'high' | 'normal' | 'low' | 'lowest';
-declare const createEditor: (elem: Element, config: IEditorConfig) => Promise<EditorInstance>;
-export default createEditor;
+
+export declare class BalloonEditor {
+    static create(elem: HTMLElement, config: EditorConfig): Promise<EditorInstance>;
+}
+
+export default BalloonEditor;

@@ -4,6 +4,7 @@ import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/balloonedi
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
+import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
@@ -33,6 +34,7 @@ BalloonEditor.builtinPlugins = [
 	Essentials,
 	//UploadAdapter,
 	Autoformat,
+	BlockToolbar,
 	Bold,
 	Italic,
 	Strikethrough,
@@ -56,16 +58,26 @@ BalloonEditor.builtinPlugins = [
 
 // Editor configuration.
 BalloonEditor.defaultConfig = {
+	blockToolbar: [
+		'heading',
+		'|',
+		'bulletedList',
+		'numberedList',
+		//'|',
+		//'outdent',
+		//'indent',
+		//'|',
+		//'uploadImage',
+		//'blockQuote',
+		//'insertTable',
+		//'mediaEmbed'
+	],
 	toolbar: {
 		items: [
-			'heading',
-			'|',
 			'bold',
 			'italic',
 			'link',
-			'strikethrough',
-			'bulletedList',
-			'numberedList',
+			'strikethrough'
 			//'|',
 			//'indent',
 			//'outdent',
@@ -81,8 +93,11 @@ BalloonEditor.defaultConfig = {
 	image: {
 		toolbar: [
 			'imageStyle:full',
+			'imageStyle:inline',
+			'imageStyle:block',
 			'imageStyle:side',
 			'|',
+			'toggleImageCaption',
 			'imageTextAlternative'
 		]
 	},
@@ -96,3 +111,5 @@ BalloonEditor.defaultConfig = {
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'ru'
 };
+
+BalloonEditor.create().then(v => {  })
