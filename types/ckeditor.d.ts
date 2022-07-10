@@ -48,6 +48,12 @@ export interface LanguageConfig {
     ui: string;
 }
 
+export interface TextPartLanguageOption {
+    languageCode: string;
+    textDirection?: 'ltr' | 'rtl' | undefined;
+    title: string;
+}
+
 export interface LinkDecoratorDefinition {
     mode: 'automatic' | 'manual';
 }
@@ -142,6 +148,16 @@ export interface HeadingOption {
     title: string;
     view?: ElementDefinition | undefined;
 }
+
+export type ElementDefinition =
+    | string
+    | {
+        attributes?: Record<string, string> | undefined;
+        classes?: string | string[] | undefined;
+        name: string;
+        priority?: number | undefined;
+        styles?: Record<string, string> | undefined;
+    };
 
 export declare class EditorInstance {
     get isReadOnly(): boolean;
@@ -257,6 +273,7 @@ export class DiffItemRemove {
     type: "remove";
 }
 
+export declare class Position { }
 
 export declare class Range { }
 
@@ -270,7 +287,7 @@ export declare class RootElement extends Element {
 }
 export declare type PriorityString = 'highest' | 'high' | 'normal' | 'low' | 'lowest';
 
-export default class EventInfo<S, N extends string = string> {
+export default class EventInfo<S, N> {
     constructor(source: S, name: N);
     readonly source: S;
     readonly name: N;
@@ -289,5 +306,3 @@ export default class EventInfo<S, N extends string = string> {
 export declare class ContentEditor extends EditorInstance {
     static create(elem: HTMLElement, config: EditorConfig): Promise<ContentEditor>;
 }
-
-export default ContentEditor;
