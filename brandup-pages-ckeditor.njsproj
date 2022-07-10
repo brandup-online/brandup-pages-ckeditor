@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include=".gitignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="sample\index.html" />
@@ -26,7 +27,6 @@
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="build\" />
     <Folder Include="types\" />
     <Folder Include="sample\" />
     <Folder Include="src\" />
