@@ -110,3 +110,7 @@ ContentEditor.defaultConfig = {
 	},
 	language: 'ru'
 };
+
+//export default createEditor = (elem, config) => {
+//	return ContentEditor.create(elem, config);
+//};

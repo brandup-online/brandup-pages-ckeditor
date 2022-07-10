@@ -251,7 +251,7 @@ export declare class Differ {
 
 export type DiffItem = DiffItemInsert | DiffItemRemove | DiffItemAttribute;
 
-export class DiffItemAttribute {
+export declare class DiffItemAttribute {
     attributeKey: string;
     attributeNewValue: string;
     attributeOldValue: string;
@@ -259,14 +259,14 @@ export class DiffItemAttribute {
     type: "attribute";
 }
 
-export class DiffItemInsert {
+export declare class DiffItemInsert {
     length: number;
     name: string;
     position: Position;
     type: "insert";
 }
 
-export class DiffItemRemove {
+export declare class DiffItemRemove {
     length: number;
     name: string;
     position: Position;
@@ -285,9 +285,9 @@ export declare class Element {
 }
 export declare class RootElement extends Element {
 }
-export declare type PriorityString = 'highest' | 'high' | 'normal' | 'low' | 'lowest';
+export type PriorityString = 'highest' | 'high' | 'normal' | 'low' | 'lowest';
 
-export default class EventInfo<S, N> {
+export declare class EventInfo<S, N> {
     constructor(source: S, name: N);
     readonly source: S;
     readonly name: N;
@@ -303,6 +303,9 @@ export default class EventInfo<S, N> {
     return?: unknown | undefined;
 }
 
-export declare class ContentEditor extends EditorInstance {
+export default class ContentEditor extends EditorInstance {
     static create(elem: HTMLElement, config: EditorConfig): Promise<ContentEditor>;
 }
+
+//declare const createEditor: (elem: HTMLElement, config: EditorConfig) => Promise<ContentEditor>;
+//export default createEditor;
