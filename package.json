@@ -53,10 +53,10 @@
     "email": "it@brandup.online"
   },
   "license": "Apache-2.0",
-  "homepage": "https://github.com/dkovyazin/brandup-pages-ckeditor",
+  "homepage": "https://github.com/brandup-online/brandup-pages-ckeditor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dkovyazin/brandup-pages-ckeditor.git"
+    "url": "https://github.com/brandup-online/brandup-pages-ckeditor.git"
   },
   "scripts": {
     "build": "webpack --mode production",
