@@ -3,46 +3,46 @@
   "version": "1.0.0",
   "description": "CKEditor 5 for BrandUp.Pages",
   "main": "./build/ckeditor.js",
-  "types": "./types/ckeditor.d.ts",
+  "types": "./build/ckeditor.d.ts",
   "files": [
     "build",
-    "types"
+    "README.md"
   ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "39.0.0",
+    "@ckeditor/ckeditor5-autoformat": "39.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "39.0.0",
+    "@ckeditor/ckeditor5-block-quote": "39.0.0",
+    "@ckeditor/ckeditor5-ckfinder": "39.0.0",
+    "@ckeditor/ckeditor5-easy-image": "39.0.0",
+    "@ckeditor/ckeditor5-editor-balloon": "39.0.0",
+    "@ckeditor/ckeditor5-essentials": "39.0.0",
+    "@ckeditor/ckeditor5-heading": "39.0.0",
+    "@ckeditor/ckeditor5-image": "39.0.0",
+    "@ckeditor/ckeditor5-indent": "39.0.0",
+    "@ckeditor/ckeditor5-link": "39.0.0",
+    "@ckeditor/ckeditor5-list": "39.0.0",
+    "@ckeditor/ckeditor5-media-embed": "39.0.0",
+    "@ckeditor/ckeditor5-paragraph": "39.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "39.0.0",
+    "@ckeditor/ckeditor5-table": "39.0.0",
+    "@ckeditor/ckeditor5-typing": "39.0.0",
+    "@ckeditor/ckeditor5-cloud-services": "39.0.0"
+  },
   "devDependencies": {
-    "@ckeditor/ckeditor5-adapter-ckfinder": "^19.0.0",
-    "@ckeditor/ckeditor5-autoformat": "^19.0.0",
-    "@ckeditor/ckeditor5-basic-styles": "^19.0.0",
-    "@ckeditor/ckeditor5-block-quote": "^19.0.0",
-    "@ckeditor/ckeditor5-ckfinder": "^19.0.0",
-    "@ckeditor/ckeditor5-core": "^19.0.0",
-    "@ckeditor/ckeditor5-dev-utils": "^13.0.0",
-    "@ckeditor/ckeditor5-dev-webpack-plugin": "^9.0.0",
-    "@ckeditor/ckeditor5-easy-image": "^19.0.0",
-    "@ckeditor/ckeditor5-editor-balloon": "^19.0.0",
-    "@ckeditor/ckeditor5-essentials": "^19.0.0",
-    "@ckeditor/ckeditor5-heading": "^19.0.0",
-    "@ckeditor/ckeditor5-image": "^19.0.0",
-    "@ckeditor/ckeditor5-indent": "^19.0.0",
-    "@ckeditor/ckeditor5-link": "^19.0.0",
-    "@ckeditor/ckeditor5-list": "^19.0.0",
-    "@ckeditor/ckeditor5-media-embed": "^19.0.0",
-    "@ckeditor/ckeditor5-paragraph": "^19.0.0",
-    "@ckeditor/ckeditor5-paste-from-office": "^19.0.0",
-    "@ckeditor/ckeditor5-table": "^19.0.0",
-    "@ckeditor/ckeditor5-typing": "^19.0.0",
-    "@ckeditor/ckeditor5-theme-lark": "^19.0.0",
-    "eslint": "^5.5.0",
-    "eslint-config-ckeditor5": "^2.0.0",
-    "stylelint": "^14.9.1",
-    "stylelint-config-ckeditor5": "^4.0.1",
-    "husky": "^1.3.1",
-    "lint-staged": "^7.0.0",
-    "postcss-loader": "^3.0.0",
-    "raw-loader": "^3.1.0",
-    "style-loader": "^1.0.0",
-    "terser-webpack-plugin": "^2.2.1",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "@ckeditor/ckeditor5-core": "39.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "38.1.4",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "31.1.13",
+    "@ckeditor/ckeditor5-theme-lark": "39.0.0",
+    "@ckeditor/ckeditor5-dev-translations": "38.2.0",
+    "husky": "8.0.3",
+    "style-loader": "3.3.3",
+    "postcss-loader": "7.3.3",
+    "raw-loader": "4.0.2",
+    "terser-webpack-plugin": "^4.2.3",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "typescript": "^4.8.4"
   },
   "engines": {
     "node": ">=8.0.0",
@@ -60,19 +60,6 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "lint": "eslint --quiet src/*.js",
-    "preversion": "npm run build"
-  },
-  "lint-staged": {
-    "src/*.js": [
-      "eslint --quiet"
-    ],
-    "**/*.css": [
-      "stylelint --quiet --allow-empty-input"
-    ]
-  },
-  "eslintIgnore": [
-    "build/**",
-    "packages/**"
-  ]
+    "postbuild": "tsc -p ./tsconfig.types.json"
+  }
 }

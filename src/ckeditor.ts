@@ -1,5 +1,4 @@
-// The editor creator to use.
-import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+import { BalloonEditor as BalloonEditorBase } from '@ckeditor/ckeditor5-editor-balloon';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
@@ -26,91 +25,87 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 //import Table from '@ckeditor/ckeditor5-table/src/table';
 //import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
+import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 
-export default class ContentEditor extends BalloonEditorBase { }
+export default class ContentEditor extends BalloonEditorBase {
+	public static override builtinPlugins = [
+		CloudServices,
+		Essentials,
+		//UploadAdapter,
+		Autoformat,
+		BlockToolbar,
+		Bold,
+		Italic,
+		Strikethrough,
+		BlockQuote,
+		//CKFinder,
+		EasyImage,
+		Heading,
+		Image,
+		ImageCaption,
+		ImageStyle,
+		ImageToolbar,
+		ImageUpload,
+		Indent,
+		Link,
+		List,
+		MediaEmbed,
+		Paragraph,
+		PasteFromOffice,
+		TextTransformation
+	];
 
-// Plugins to include in the build.
-ContentEditor.builtinPlugins = [
-	Essentials,
-	//UploadAdapter,
-	Autoformat,
-	BlockToolbar,
-	Bold,
-	Italic,
-	Strikethrough,
-	BlockQuote,
-	//CKFinder,
-	EasyImage,
-	Heading,
-	Image,
-	ImageCaption,
-	ImageStyle,
-	ImageToolbar,
-	ImageUpload,
-	Indent,
-	Link,
-	List,
-	MediaEmbed,
-	Paragraph,
-	PasteFromOffice,
-	TextTransformation
-];
-
-// Editor configuration.
-ContentEditor.defaultConfig = {
-	blockToolbar: [
-		'heading',
-		'|',
-		'bulletedList',
-		'numberedList',
-		//'|',
-		//'outdent',
-		//'indent',
-		//'|',
-		//'uploadImage',
-		//'blockQuote',
-		//'insertTable',
-		//'mediaEmbed'
-	],
-	toolbar: {
-		items: [
-			'bold',
-			'italic',
-			'link',
-			'strikethrough'
+	public static override defaultConfig = {
+		blockToolbar: [
+			'heading',
+			'|',
+			'bulletedList',
+			'numberedList',
 			//'|',
-			//'indent',
 			//'outdent',
+			//'indent',
 			//'|',
-			//'imageUpload',
+			//'uploadImage',
 			//'blockQuote',
 			//'insertTable',
-			//'mediaEmbed',
-			//'undo',
-			//'redo'
-		]
-	},
-	image: {
-		toolbar: [
-			'imageStyle:full',
-			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
-			'|',
-			'toggleImageCaption',
-			'imageTextAlternative'
-		]
-	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
-	},
-	language: 'ru'
-};
-
-//export default createEditor = (elem, config) => {
-//	return ContentEditor.create(elem, config);
-//};
+			//'mediaEmbed'
+		],
+		toolbar: {
+			items: [
+				'bold',
+				'italic',
+				'link',
+				'strikethrough'
+				//'|',
+				//'indent',
+				//'outdent',
+				//'|',
+				//'imageUpload',
+				//'blockQuote',
+				//'insertTable',
+				//'mediaEmbed',
+				//'undo',
+				//'redo'
+			]
+		},
+		image: {
+			toolbar: [
+				'imageStyle:full',
+				'imageStyle:inline',
+				'imageStyle:block',
+				'imageStyle:side',
+				'|',
+				'toggleImageCaption',
+				'imageTextAlternative'
+			]
+		},
+		table: {
+			contentToolbar: [
+				'tableColumn',
+				'tableRow',
+				'mergeTableCells'
+			]
+		},
+		language: 'ru'
+	};
+}

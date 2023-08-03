@@ -23,18 +23,19 @@
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="sample\index.html" />
-    <Content Include="src\ckeditor.js" />
+    <Content Include="sample\images.jpeg" />
+    <Content Include="tsconfig.types.json" />
+    <Content Include="tsconfig.json" />
     <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="types\" />
+    <Folder Include="typings\" />
     <Folder Include="sample\" />
     <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="types\ckeditor.d.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\ckeditor.ts" />
+    <TypeScriptCompile Include="typings\types.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
