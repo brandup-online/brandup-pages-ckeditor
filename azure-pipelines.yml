@@ -55,7 +55,7 @@ stages:
             displayName: "npm version"
             inputs:
               command: "custom"
-              customCommand: "version -- $(Build.BuildNumber) --no-git-tag-version"
+              customCommand: 'version "$(Build.BuildNumber)" --no-git-tag-version'
 
           - task: "Npm@1"
             displayName: "npm pack"
