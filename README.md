@@ -1,6 +1,6 @@
 # brandup-pages-ckeditor
 
-Редактор контента для BrandUp.Pages.
+HTML editor for brandup-ui-pages.
 
 ## Using
 
@@ -14,7 +14,7 @@ ContentEditor.create(document.querySelector('#editor'), { language: 'ru' })
 		} );
 ```
 
-Использование в TypeScript
+Using in TypeScript.
 
 ```
 import ContentEditor from "brandup-pages-ckeditor";
