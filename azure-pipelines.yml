@@ -55,13 +55,13 @@ stages:
             displayName: "npm version"
             inputs:
               command: "custom"
-              customCommand: "npm version -- $(Build.BuildNumber)"
+              customCommand: "version -- $(Build.BuildNumber)"
 
           - task: "Npm@1"
             displayName: "npm pack"
             inputs:
               command: custom
-              customCommand: "npm pack --pack-destination $(Build.ArtifactStagingDirectory)"
+              customCommand: "pack --pack-destination $(Build.ArtifactStagingDirectory)"
 
           - publish: $(Build.ArtifactStagingDirectory)
             displayName: publish artifact
@@ -85,7 +85,7 @@ stages:
             displayName: set git tag
 
   - stage: Production
-    displayName: Deploy stage
+    displayName: Deploy
     dependsOn: Build
     jobs:
       - deployment: Production
