@@ -106,6 +106,7 @@ export default class ContentEditor extends BalloonEditorBase {
 				'mergeTableCells'
 			]
 		},
-		language: 'ru'
+		language: 'ru',
+		licenseKey: 'test'
 	};
 }
