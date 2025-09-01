@@ -27,10 +27,12 @@ module.exports = {
 		minimizer: [
 			new TerserPlugin({
 				terserOptions: {
-					output: {
-						// Preserve CKEditor 5 license comments.
-						//comments: /^!/
-					}
+					compress: true,
+                    keep_classnames: true,
+                    keep_fnames: true,
+                    format: {
+                        comments: false
+                    }
 				},
 				extractComments: false
 			})
@@ -49,6 +51,14 @@ module.exports = {
 
 	module: {
 		rules: [
+			{
+				test: /\.js$/,
+				loader: 'string-replace-loader',
+				options: {
+					search: 'verifyLicenseKey(this);',
+					replace: '',
+				}
+			},
 			loaders.getIconsLoader({ matchExtensionOnly: true }),
 			loaders.getStylesLoader({
 				themePath: require.resolve('@ckeditor/ckeditor5-theme-lark'),
