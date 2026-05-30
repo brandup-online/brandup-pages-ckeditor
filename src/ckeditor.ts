@@ -56,12 +56,9 @@ export default class ContentEditor extends BalloonEditorBase {
 	];
 
 	public static override defaultConfig = {
-		blockToolbar: [
-			'heading',
-			'|',
-			'bulletedList',
-			'numberedList'
-		],
+		// The block toolbar is opt-in: it stays hidden unless the consumer
+		// provides a `blockToolbar` option (e.g. ContentEditor.create(el,
+		// { blockToolbar: ['heading', '|', 'bulletedList', 'numberedList'] })).
 		toolbar: {
 			items: [
 				'bold',
