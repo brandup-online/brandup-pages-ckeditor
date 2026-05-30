@@ -4,10 +4,10 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "build",
+    "rootDir": "./src",
     "stripInternal": true
   },
   "include": [
-    "src",
-    "typings"
+    "src"
   ]
 }

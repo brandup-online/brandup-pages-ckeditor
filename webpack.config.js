@@ -1,9 +1,6 @@
 'use strict';
 
 const path = require('path');
-const webpack = require('webpack');
-const { loaders } = require('@ckeditor/ckeditor5-dev-utils');
-const { CKEditorTranslationsPlugin } = require('@ckeditor/ckeditor5-dev-translations');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
@@ -28,26 +25,16 @@ module.exports = {
 			new TerserPlugin({
 				terserOptions: {
 					compress: true,
-                    keep_classnames: true,
-                    keep_fnames: true,
-                    format: {
-                        comments: false
-                    }
+					keep_classnames: true,
+					keep_fnames: true,
+					format: {
+						comments: false
+					}
 				},
 				extractComments: false
 			})
 		]
 	},
-
-	plugins: [
-		new CKEditorTranslationsPlugin({
-			language: 'ru',
-			additionalLanguages: ['ru', 'en'],
-			includeCorePackageTranslations: false,
-			buildAllTranslationsToSeparateFiles: false,
-			addMainLanguageTranslationsToAllAssets: true
-		})
-	],
 
 	module: {
 		rules: [
@@ -59,12 +46,17 @@ module.exports = {
 					replace: '',
 				}
 			},
-			loaders.getIconsLoader({ matchExtensionOnly: true }),
-			loaders.getStylesLoader({
-				themePath: require.resolve('@ckeditor/ckeditor5-theme-lark'),
-				minify: true
-			}),
-			loaders.getTypeScriptLoader()
+			{
+				test: /\.css$/,
+				use: ['style-loader', 'css-loader']
+			},
+			{
+				test: /\.ts$/,
+				loader: 'ts-loader',
+				options: {
+					transpileOnly: true
+				}
+			}
 		]
 	},
 

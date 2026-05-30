@@ -4,18 +4,17 @@
       "DOM",
       "DOM.Iterable"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "strict": true,
-    "module": "es6",
+    "module": "esnext",
     "target": "es2019",
     "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true
   },
   "include": [
-    "src",
-    "typings"
+    "src"
   ]
 }
