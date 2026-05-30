@@ -30,7 +30,22 @@ import enTranslations from 'ckeditor5/translations/en.js';
 
 import 'ckeditor5/ckeditor5.css';
 
-const DEFAULT_BLOCK_TOOLBAR_ITEMS = ['heading', '|', 'bulletedList', 'numberedList'];
+/**
+ * An item that can be placed in the block toolbar. `'|'` is a separator;
+ * the rest are toolbar components registered by the bundled plugins.
+ */
+export type BlockToolbarItem =
+	| '|'
+	| 'heading'
+	| 'bulletedList'
+	| 'numberedList'
+	| 'blockQuote'
+	| 'uploadImage'
+	| 'mediaEmbed'
+	| 'indent'
+	| 'outdent';
+
+const DEFAULT_BLOCK_TOOLBAR_ITEMS: Array<BlockToolbarItem> = ['heading', '|', 'bulletedList', 'numberedList'];
 
 export interface ContentEditorConfig extends EditorConfig {
 	/**
@@ -42,7 +57,7 @@ export interface ContentEditorConfig extends EditorConfig {
 	 * Items shown in the block toolbar when it is enabled.
 	 * Defaults to `['heading', '|', 'bulletedList', 'numberedList']`.
 	 */
-	blockToolbarItems?: Array<string>;
+	blockToolbarItems?: Array<BlockToolbarItem>;
 }
 
 export default class ContentEditor extends BalloonEditorBase {
