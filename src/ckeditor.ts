@@ -40,8 +40,8 @@ export type BlockToolbarItem =
 	| 'bulletedList'
 	| 'numberedList'
 	| 'blockQuote'
-	| 'uploadImage'
-	| 'mediaEmbed'
+	// | 'uploadImage'
+	// | 'mediaEmbed'
 	| 'indent'
 	| 'outdent';
 
