@@ -92,7 +92,7 @@ export default class ContentEditor extends BalloonEditorBase {
 		// runtime via the `language` option (e.g. ContentEditor.create(el,
 		// { language: 'en' })). Languages not bundled here fall back to English.
 		translations: [ruTranslations, enTranslations],
-		language: 'ru',
+		language: 'en',
 		licenseKey: 'test'
 	};
 }
