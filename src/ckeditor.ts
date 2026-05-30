@@ -24,7 +24,8 @@ import {
 	CloudServices
 } from 'ckeditor5';
 
-import coreTranslations from 'ckeditor5/translations/ru.js';
+import ruTranslations from 'ckeditor5/translations/ru.js';
+import enTranslations from 'ckeditor5/translations/en.js';
 
 import 'ckeditor5/ckeditor5.css';
 
@@ -87,7 +88,10 @@ export default class ContentEditor extends BalloonEditorBase {
 				'mergeTableCells'
 			]
 		},
-		translations: [coreTranslations],
+		// Bundled UI translations. The interface language is selected at
+		// runtime via the `language` option (e.g. ContentEditor.create(el,
+		// { language: 'en' })). Languages not bundled here fall back to English.
+		translations: [ruTranslations, enTranslations],
 		language: 'ru',
 		licenseKey: 'test'
 	};

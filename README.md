@@ -14,6 +14,16 @@ ContentEditor.create(document.querySelector('#editor'), { language: 'ru' })
 		} );
 ```
 
+### Language
+
+The interface language is selected with the `language` option. Russian (`ru`,
+the default) and English (`en`) translations are bundled; any other value falls
+back to English.
+
+```
+ContentEditor.create(document.querySelector('#editor'), { language: 'en' });
+```
+
 Using in TypeScript.
 
 ```
