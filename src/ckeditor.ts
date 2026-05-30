@@ -29,6 +29,7 @@ import ruTranslations from 'ckeditor5/translations/ru.js';
 import enTranslations from 'ckeditor5/translations/en.js';
 
 import 'ckeditor5/ckeditor5.css';
+import './ckeditor.css';
 
 /**
  * An item that can be placed in the block toolbar. `'|'` is a separator;
