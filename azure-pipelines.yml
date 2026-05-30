@@ -11,7 +11,7 @@ variables:
   - name: envName
     value: "brandup-pages-ckeditor"
   - name: version-major
-    value: "2"
+    value: "3"
   - name: version-minor
     value: "0"
 
