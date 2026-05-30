@@ -21,13 +21,29 @@ import {
 	Paragraph,
 	PasteFromOffice,
 	TextTransformation,
-	CloudServices
+	CloudServices,
+	type EditorConfig
 } from 'ckeditor5';
 
 import ruTranslations from 'ckeditor5/translations/ru.js';
 import enTranslations from 'ckeditor5/translations/en.js';
 
 import 'ckeditor5/ckeditor5.css';
+
+const DEFAULT_BLOCK_TOOLBAR_ITEMS = ['heading', '|', 'bulletedList', 'numberedList'];
+
+export interface ContentEditorConfig extends EditorConfig {
+	/**
+	 * Whether the block toolbar is enabled. Defaults to `false`.
+	 */
+	blockToolbarEnabled?: boolean;
+
+	/**
+	 * Items shown in the block toolbar when it is enabled.
+	 * Defaults to `['heading', '|', 'bulletedList', 'numberedList']`.
+	 */
+	blockToolbarItems?: Array<string>;
+}
 
 export default class ContentEditor extends BalloonEditorBase {
 	public static override builtinPlugins = [
@@ -56,9 +72,6 @@ export default class ContentEditor extends BalloonEditorBase {
 	];
 
 	public static override defaultConfig = {
-		// The block toolbar is opt-in: it stays hidden unless the consumer
-		// provides a `blockToolbar` option (e.g. ContentEditor.create(el,
-		// { blockToolbar: ['heading', '|', 'bulletedList', 'numberedList'] })).
 		toolbar: {
 			items: [
 				'bold',
@@ -87,9 +100,43 @@ export default class ContentEditor extends BalloonEditorBase {
 		},
 		// Bundled UI translations. The interface language is selected at
 		// runtime via the `language` option (e.g. ContentEditor.create(el,
-		// { language: 'en' })). Languages not bundled here fall back to English.
+		// { language: 'ru' })). Languages not bundled here fall back to English.
 		translations: [ruTranslations, enTranslations],
 		language: 'en',
 		licenseKey: 'test'
 	};
+
+	/**
+	 * Creates a `ContentEditor` instance.
+	 *
+	 * In addition to the standard CKEditor configuration, two options control
+	 * the block toolbar:
+	 *
+	 * - `blockToolbarEnabled` — turns the block toolbar on/off (default `false`).
+	 * - `blockToolbarItems` — the items it shows when enabled
+	 *   (default `['heading', '|', 'bulletedList', 'numberedList']`).
+	 */
+	public static override create( config: ContentEditorConfig ): Promise<ContentEditor>;
+	public static override create( sourceElementOrData: HTMLElement | string, config?: ContentEditorConfig ): Promise<ContentEditor>;
+	public static override create(
+		sourceElementOrDataOrConfig: HTMLElement | string | ContentEditorConfig,
+		config: ContentEditorConfig = {}
+	): Promise<ContentEditor> {
+		const isSource = typeof sourceElementOrDataOrConfig === 'string' ||
+			( typeof HTMLElement !== 'undefined' && sourceElementOrDataOrConfig instanceof HTMLElement );
+
+		const source = isSource ? sourceElementOrDataOrConfig as HTMLElement | string : undefined;
+		const { blockToolbarEnabled, blockToolbarItems, ...editorConfig } =
+			isSource ? config : sourceElementOrDataOrConfig as ContentEditorConfig;
+
+		const finalConfig: EditorConfig = { ...editorConfig };
+
+		if (blockToolbarEnabled) {
+			finalConfig.blockToolbar = blockToolbarItems ?? DEFAULT_BLOCK_TOOLBAR_ITEMS;
+		}
+
+		return ( source === undefined
+			? super.create(finalConfig)
+			: super.create(source, finalConfig) ) as Promise<ContentEditor>;
+	}
 }

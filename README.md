@@ -26,12 +26,23 @@ ContentEditor.create(document.querySelector('#editor'), { language: 'ru' });
 
 ### Block toolbar
 
-The block toolbar is disabled by default. Enable it by passing a `blockToolbar`
-option with the items to show:
+The block toolbar is controlled by two options:
+
+- `blockToolbarEnabled` (boolean) — turns the block toolbar on or off.
+  Defaults to `false`.
+- `blockToolbarItems` (array) — the items shown when the block toolbar is
+  enabled. Defaults to `['heading', '|', 'bulletedList', 'numberedList']`.
 
 ```
+// Enable the block toolbar with the default items.
 ContentEditor.create(document.querySelector('#editor'), {
-	blockToolbar: ['heading', '|', 'bulletedList', 'numberedList']
+	blockToolbarEnabled: true
+});
+
+// Enable it with a custom set of items.
+ContentEditor.create(document.querySelector('#editor'), {
+	blockToolbarEnabled: true,
+	blockToolbarItems: ['heading', '|', 'bulletedList']
 });
 ```
 
