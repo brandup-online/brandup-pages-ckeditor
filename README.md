@@ -46,6 +46,20 @@ ContentEditor.create(document.querySelector('#editor'), {
 });
 ```
 
+### Markdown
+
+By default the editor reads and writes HTML. Set `markdown: true` to switch the
+data format to GFM Markdown — `editor.getData()` then returns Markdown and
+`editor.setData()` expects Markdown. The editing experience stays WYSIWYG; only
+the input/output format changes.
+
+```
+ContentEditor.create(document.querySelector('#editor'), { markdown: true })
+	.then(editor => {
+		console.log(editor.getData()); // Markdown string
+	});
+```
+
 Using in TypeScript.
 
 ```

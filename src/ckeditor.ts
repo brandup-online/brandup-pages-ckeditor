@@ -22,6 +22,7 @@ import {
 	PasteFromOffice,
 	TextTransformation,
 	CloudServices,
+	Markdown,
 	type EditorConfig
 } from 'ckeditor5';
 
@@ -59,6 +60,13 @@ export interface ContentEditorConfig extends EditorConfig {
 	 * Defaults to `['heading', '|', 'bulletedList', 'numberedList']`.
 	 */
 	blockToolbarItems?: Array<BlockToolbarItem>;
+
+	/**
+	 * When `true`, the editor reads and writes GFM Markdown instead of HTML:
+	 * `getData()` returns Markdown and `setData()` expects Markdown. Defaults
+	 * to `false` (HTML).
+	 */
+	markdown?: boolean;
 }
 
 export default class ContentEditor extends BalloonEditorBase {
@@ -131,6 +139,9 @@ export default class ContentEditor extends BalloonEditorBase {
 	 * - `blockToolbarEnabled` — turns the block toolbar on/off (default `false`).
 	 * - `blockToolbarItems` — the items it shows when enabled
 	 *   (default `['heading', '|', 'bulletedList', 'numberedList']`).
+	 *
+	 * The `markdown` option switches the editor's data format from HTML to
+	 * GFM Markdown (default `false`).
 	 */
 	public static override create( config: ContentEditorConfig ): Promise<ContentEditor>;
 	public static override create( sourceElementOrData: HTMLElement | string, config?: ContentEditorConfig ): Promise<ContentEditor>;
@@ -142,13 +153,17 @@ export default class ContentEditor extends BalloonEditorBase {
 			( typeof HTMLElement !== 'undefined' && sourceElementOrDataOrConfig instanceof HTMLElement );
 
 		const source = isSource ? sourceElementOrDataOrConfig as HTMLElement | string : undefined;
-		const { blockToolbarEnabled, blockToolbarItems, ...editorConfig } =
+		const { blockToolbarEnabled, blockToolbarItems, markdown, ...editorConfig } =
 			isSource ? config : sourceElementOrDataOrConfig as ContentEditorConfig;
 
 		const finalConfig: EditorConfig = { ...editorConfig };
 
 		if (blockToolbarEnabled) {
 			finalConfig.blockToolbar = blockToolbarItems ?? DEFAULT_BLOCK_TOOLBAR_ITEMS;
+		}
+
+		if (markdown) {
+			finalConfig.extraPlugins = [ ...( finalConfig.extraPlugins ?? [] ), Markdown ];
 		}
 
 		return ( source === undefined
